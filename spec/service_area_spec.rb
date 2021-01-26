@@ -24,5 +24,13 @@ RSpec.describe ServiceArea do
         expect(subject).to be true
       end
     end
+
+    context 'lsoa_allowed_list contains postcode' do
+      let(:lsoa_allowed_list) { [postcode] }
+      let(:args) { {lsoa_allowed_list: lsoa_allowed_list} }
+      it 'is true' do
+        expect(subject).to be true
+      end
+    end
   end
 end
