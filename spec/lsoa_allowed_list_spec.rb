@@ -53,17 +53,32 @@ RSpec.describe LsoaAllowedList do
       {
         'SE17QD' => {
           'result' => { 'lsoa' => 'Southwark 034A' }
+        },
+        'SE19AQ' => {
+          'result' => { 'lsoa' => 'Lambeth 123B' }
         }
       }
-    end
-    let(:normalized_postcode) do
-      Postcode.new('SE1 7QD').normalized
     end
     subject do
       described_class.new(mapper).include?(normalized_postcode)
     end
-    it 'is true for Southwark postcodes' do
-      expect(subject).to be true
+
+    context 'Southwark postcodes' do
+      let(:normalized_postcode) do
+        Postcode.new('SE1 7QD').normalized
+      end
+      it 'is true' do
+        expect(subject).to be true
+      end
+    end
+
+    context 'Lambeth postcodes' do
+      let(:normalized_postcode) do
+        Postcode.new('SE1 9AQ').normalized
+      end
+      it 'is true' do
+        expect(subject).to be true
+      end
     end
   end
 

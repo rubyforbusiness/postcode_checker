@@ -2,7 +2,7 @@
 
 # Postcodes allowed by LSOA
 class LsoaAllowedList
-  MATCHER = /^Southwark|Lambeth/.freeze
+  MATCHER = /^Southwark|^Lambeth/.freeze
   def initialize(postcode_lsoa_mapper)
     @mapper = postcode_lsoa_mapper
   end
