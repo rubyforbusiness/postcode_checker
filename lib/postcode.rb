@@ -13,6 +13,7 @@ class Postcode
   def normalize(raw_postcode)
     postcode = raw_postcode.tr(' ', '').upcase
     postcode.match(/\d+/) || raise(ArgumentError, invalid_message(raw_postcode))
+    # TODO: add more normalisation e.g. length, some alpha
     postcode
   end
 

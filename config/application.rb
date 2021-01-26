@@ -27,5 +27,6 @@ module Postcodes
     )
     config.service_area = ServiceArea.new(postcode_allowed_list:
                                      config.postcode_allowed_list)
+    config.postcode_api = config_for(:postcode_api)
   end
 end
