@@ -8,7 +8,7 @@ RSpec.describe PostcodeAllowedList do
       Postcode.new('SE1 7QA').normalized
     end
     let(:postcodes) do
-      Rails.configuration.postcode_allowed_list
+      Rails.configuration.raw_postcode_allowed_list
         .map { |raw_postcode| Postcode.new(raw_postcode) }
     end
     subject do

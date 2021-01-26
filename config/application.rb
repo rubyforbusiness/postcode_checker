@@ -20,8 +20,9 @@ module Postcodes
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
+    config.raw_postcode_allowed_list = config_for(:postcode_allowed_list)
     config.postcode_allowed_list = PostcodeAllowedList.new(
-      config_for(:postcode_allowed_list)
+      config.raw_postcode_allowed_list
          .map { |raw_postcode| Postcode.new(raw_postcode) }
     )
     config.service_area = ServiceArea.new(postcode_allowed_list:
