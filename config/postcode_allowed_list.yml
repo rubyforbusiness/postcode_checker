@@ -3,8 +3,8 @@ production:
   - SE1 7QA
 
 development:
-  - SE1 7QD
-  - SE1 7QA
+  - SH24 1AA
+  - SH24 1AB
 
 test:
   - SE1 7QD

@@ -11,12 +11,16 @@ class PostcodeLsoaMapper
     }
   end
 
-  def fetch(normalised_postcode)
-    return nil unless @base_url.present?
+  def fetch(normalised_postcode, default)
+    # TODO: cache the results since they won't change very often
+    return default unless @base_url.present?
 
     url = URI("#{@base_url}/#{normalised_postcode}")
     response = HTTParty.send('get', url.to_s, @httparty_options)
-    JSON.parse(response&.body)
+    json = JSON.parse(response&.body)
+    return default unless json['status'] == 200
+
+    json
   end
 
 end

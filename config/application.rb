@@ -5,6 +5,8 @@ require 'rails/all'
 require_relative '../lib/postcode'
 require_relative '../lib/postcode_allowed_list'
 require_relative '../app/services/service_area'
+require_relative '../lib/lsoa_allowed_list'
+require_relative '../lib/postcode_lsoa_mapper'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -25,8 +27,10 @@ module Postcodes
       config.raw_postcode_allowed_list
          .map { |raw_postcode| Postcode.new(raw_postcode) }
     )
-    config.service_area = ServiceArea.new(postcode_allowed_list:
-                                     config.postcode_allowed_list)
     config.postcode_api = config_for(:postcode_api)
+    config.service_area = ServiceArea
+        .new(postcode_allowed_list: config.postcode_allowed_list,
+             lsoa_allowed_list: LsoaAllowedList.new(PostcodeLsoaMapper.new)
+             )
   end
 end
