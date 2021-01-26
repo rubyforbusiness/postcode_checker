@@ -3,11 +3,10 @@
 require 'httparty'
 # Maps Postcodes to LSOA areas
 class PostcodeLsoaMapper
-
   def initialize
     @base_url = Rails.configuration.postcode_api['base_url']
     @httparty_options = {
-      format: :json,
+      format: :json
     }
   end
 
@@ -22,5 +21,4 @@ class PostcodeLsoaMapper
 
     json
   end
-
 end
