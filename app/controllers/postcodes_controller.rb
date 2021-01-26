@@ -1,9 +1,9 @@
 # frozen_string_literal: true
+
 require 'postcode'
 
 # Main controller for application
 class PostcodesController < ApplicationController
-
   def check; end
 
   def submit

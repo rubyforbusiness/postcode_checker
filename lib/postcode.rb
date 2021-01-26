@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Holds postcodes in standard form
 class Postcode
   INVALID_MESSAGE = 'Sorry that postcode is invalid'
