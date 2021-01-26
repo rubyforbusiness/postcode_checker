@@ -14,7 +14,7 @@ RSpec.describe Postcode do
 
     context 'no digits in postcode' do
       let(:raw_postcode) { 'rubbish' }
-      let(:error_message) { 'Sorry that postcode is invalid' }
+      let(:error_message) { "Sorry #{raw_postcode} is an invalid postcode" }
       it 'raises an exception' do
         expect {
           subject

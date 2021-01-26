@@ -16,5 +16,4 @@ class ServiceArea
   private
 
   attr_reader :postcode_allowed_list, :lsoa_allowed_list
-
 end
