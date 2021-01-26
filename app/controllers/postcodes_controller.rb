@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'postcode'
+require 'service_area'
 
 # Main controller for application
 class PostcodesController < ApplicationController
@@ -10,7 +11,13 @@ class PostcodesController < ApplicationController
     permitted = params.require(:postcode).permit(:postcode)
     @raw_postcode = permitted[:postcode]
     postcode = Postcode.new(@raw_postcode)
-    @message = "Good news. #{@raw_postcode} is in our service area"
+    service_area = ServiceArea.new
+    @message = case service_area.servable?(postcode)
+               when true
+                 "Good news. #{@raw_postcode} is in our service area"
+               else
+                 "Sorry #{@raw_postcode} is not in our service area"
+               end
     render :check
   rescue StandardError => e
     @message = e.message + ':' + @raw_postcode
