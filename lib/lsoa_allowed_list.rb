@@ -8,7 +8,8 @@ class LsoaAllowedList
   end
 
   def include?(normalised_postcode)
-    lsoa = mapper.fetch(normalised_postcode, nil)&.fetch("result", nil)&.fetch("lsoa",nil)
+    lsoa = mapper.fetch(normalised_postcode, nil)
+      &.fetch('result', nil)&.fetch('lsoa', nil)
     lsoa&.match? MATCHER
   end
 
