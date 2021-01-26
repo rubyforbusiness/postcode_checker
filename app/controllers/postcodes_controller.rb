@@ -12,8 +12,8 @@ class PostcodesController < ApplicationController
     postcode = Postcode.new(@raw_postcode)
     @message = "Good news. #{@raw_postcode} is in our service area"
     render :check
-  rescue => ex
-    @message = ex.message + ':' + @raw_postcode
+  rescue StandardError => e
+    @message = e.message + ':' + @raw_postcode
     render :check
   end
 

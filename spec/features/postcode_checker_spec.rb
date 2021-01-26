@@ -12,7 +12,8 @@ RSpec.feature 'Postcode Checking end-to-end' do
     fill_in 'Postcode', with: invalid_postcode
     click_button 'Check postcode'
 
-    expect(page).to have_text("Sorry #{invalid_postcode} is an invalid postcode")
+    expect(page).to have_text("Sorry #{invalid_postcode} " \
+                              'is an invalid postcode')
   end
 
   scenario 'User enters a valid postcode which is serveable' do
@@ -22,6 +23,6 @@ RSpec.feature 'Postcode Checking end-to-end' do
     click_button 'Check postcode'
 
     expect(page).to have_text("Good news. #{valid_postcode} " \
-                              "is in our service area")
+                              'is in our service area')
   end
 end
