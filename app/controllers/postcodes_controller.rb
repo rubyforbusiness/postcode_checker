@@ -11,7 +11,8 @@ class PostcodesController < ApplicationController
     permitted = params.require(:postcode).permit(:postcode)
     @raw_postcode = permitted[:postcode]
     postcode = Postcode.new(@raw_postcode)
-    service_area = ServiceArea.new
+    postcode_allowed_list = PostcodeAllowedList.new
+    service_area = ServiceArea.new(postcode_allowed_list: postcode_allowed_list)
     @message = case service_area.servable?(postcode)
                when true
                  "Good news. #{@raw_postcode} is in our service area"
