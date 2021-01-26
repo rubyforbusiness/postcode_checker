@@ -20,7 +20,7 @@ RSpec.feature 'Postcode Checking end-to-end' do
     fill_in 'Postcode', with: valid_postcode
     click_button 'Check postcode'
 
-    expect(page).to have_text("Good news. #{valid_postcode}
-is in our service area")
+    expect(page).to have_text("Good news. #{valid_postcode} " \
+                              "is in our service area")
   end
 end
