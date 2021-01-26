@@ -11,5 +11,15 @@ RSpec.describe Postcode do
     it 'normalizes postcodes' do
       expect(subject).to eq(normalized_value)
     end
+
+    context 'no digits in postcode' do
+      let(:raw_postcode) { 'rubbish' }
+      let(:error_message) { 'Sorry that postcode is invalid' }
+      it 'raises an exception' do
+        expect {
+          subject
+        }.to raise_error(ArgumentError, error_message)
+      end
+    end
   end
 end

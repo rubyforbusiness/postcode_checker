@@ -12,6 +12,8 @@ class Postcode
   private
 
   def normalize(raw_postcode)
-    raw_postcode.tr(' ', '').upcase
+    postcode = raw_postcode.tr(' ', '').upcase
+    postcode.match(/\d+/) || raise(ArgumentError, INVALID_MESSAGE)
+    postcode
   end
 end

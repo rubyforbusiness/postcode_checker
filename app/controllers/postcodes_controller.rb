@@ -7,10 +7,13 @@ class PostcodesController < ApplicationController
   def check; end
 
   def submit
-    permitted = params.require(:postcode).permit(:postcode)
-    raw_postcode = permitted[:postcode]
-    postcode = Postcode.new(raw_postcode)
-    @message = INVALID_MESSAGE
+      permitted = params.require(:postcode).permit(:postcode)
+      @raw_postcode = permitted[:postcode]
+      postcode = Postcode.new(@raw_postcode)
+      render postcodes_check_path
+  rescue => ex
+    binding.pry
+    @message = ex.message + ':' + @raw_postcode
     render postcodes_check_path
   end
 
