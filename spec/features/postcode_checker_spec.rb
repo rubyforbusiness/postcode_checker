@@ -4,14 +4,15 @@ require 'rails_helper'
 
 RSpec.feature 'Postcode Checking end-to-end' do
   let(:valid_postcode) { 'SE1 7QD' }
+  let(:invalid_postcode) { 'rubbish' }
 
   scenario 'User enters an invalid postcode' do
     visit '/postcodes/check'
 
-    fill_in 'Postcode', with: 'rubbish'
+    fill_in 'Postcode', with: invalid_postcode
     click_button 'Check postcode'
 
-    expect(page).to have_text('Sorry that postcode is invalid')
+    expect(page).to have_text("Sorry #{invalid_postcode} is an invalid postcode")
   end
 
   scenario 'User enters a valid postcode which is serveable' do

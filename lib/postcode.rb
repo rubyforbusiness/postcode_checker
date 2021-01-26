@@ -2,7 +2,6 @@
 
 # Holds postcodes in standard form
 class Postcode
-  INVALID_MESSAGE = 'Sorry that postcode is invalid'
   attr_reader :normalized
 
   def initialize(raw_postcode)
@@ -13,7 +12,12 @@ class Postcode
 
   def normalize(raw_postcode)
     postcode = raw_postcode.tr(' ', '').upcase
-    postcode.match(/\d+/) || raise(ArgumentError, INVALID_MESSAGE)
+    postcode.match(/\d+/) || raise(ArgumentError, invalid_message(raw_postcode))
     postcode
+  end
+
+  def invalid_message(raw_postcode)
+    format('Sorry %<postcode>s is an invalid postcode',
+           postcode: raw_postcode)
   end
 end

@@ -14,7 +14,7 @@ class PostcodesController < ApplicationController
     render :check
   rescue => ex
     @message = ex.message + ':' + @raw_postcode
-    render postcodes_check_path && return
+    render :check
   end
 
   private
