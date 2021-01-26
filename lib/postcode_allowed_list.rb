@@ -6,8 +6,8 @@ class PostcodeAllowedList
     @normalized_postcodes = postcodes.map(&:normalized)
   end
 
-  def include?(postcode)
-    normalized_postcodes.include?(postcode)
+  def include?(normalised_postcode)
+    normalized_postcodes.include?(normalised_postcode)
   end
 
   private
