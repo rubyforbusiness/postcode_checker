@@ -1,0 +1,10 @@
+<h1>Postcode Checker</h1>
+
+<h2><%= @message %></h2>
+
+
+<%= form_for(:postcode) do |form| %>
+  <%= form.label :postcode %>
+  <%= form.text_field :postcode %>
+  <%= form.submit('Check postcode') %>
+<% end %>
