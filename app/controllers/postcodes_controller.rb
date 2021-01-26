@@ -12,21 +12,29 @@ class PostcodesController < ApplicationController
     permitted = params.require(:postcode).permit(:postcode)
     @raw_postcode = permitted[:postcode]
     postcode = Postcode.new(@raw_postcode)
-    @message = case Rails.configuration.service_area.servable?(postcode)
-               when true
-                 "Good news. #{@raw_postcode} is in our service area"
-               else
-                 "Sorry #{@raw_postcode} is not in our service area"
-               end
+    @message = servable_message(postcode)
     render :check
   rescue StandardError => e
-    @message = e.message + ':' + @raw_postcode
+    @message = e.message
     render :check
   end
 
   private
 
+  def servable_message(postcode)
+    case Rails.configuration.service_area.servable?(postcode)
+    when true
+      served_message(@raw_postcode)
+    else
+      not_served_message(@raw_postcode)
+    end
+  end
+
   def served_message(raw_postcode)
     "Good news. #{raw_postcode} is in our service area"
+  end
+
+  def not_served_message(raw_postcode)
+    "Sorry #{raw_postcode} is not in our service area"
   end
 end
