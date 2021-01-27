@@ -1,0 +1,11 @@
+production:
+  - SE1 7QD
+  - SE1 7QA
+
+development:
+  - SH24 1AA
+  - SH24 1AB
+
+test:
+  - SE1 7QD
+  - SE1 7QA
