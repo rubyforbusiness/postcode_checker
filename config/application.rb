@@ -2,11 +2,11 @@ require_relative 'boot'
 
 require 'rails/all'
 
-require_relative '../lib/postcode'
-require_relative '../lib/postcode_allowed_list'
+require_relative '../app/models/postcode'
+require_relative '../app/models/postcode_allowed_list'
 require_relative '../app/services/service_area'
-require_relative '../lib/lsoa_allowed_list'
-require_relative '../lib/postcode_lsoa_mapper'
+require_relative '../app/models/lsoa_allowed_list'
+require_relative '../app/models/postcode_lsoa_mapper'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
