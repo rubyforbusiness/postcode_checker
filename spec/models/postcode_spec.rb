@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 require 'postcode'
 RSpec.describe Postcode do
-
   describe '#normalized' do
     let(:raw_postcode) { 'SE1 7QD' }
     let(:normalized_value) { 'SE17QD' }
@@ -27,5 +28,4 @@ RSpec.describe Postcode do
       end
     end
   end
-
 end
