@@ -12,10 +12,11 @@ class PostcodesController < ApplicationController
     permitted = params.require(:postcode).permit(:postcode)
     @raw_postcode = permitted[:postcode]
     postcode = Postcode.new(@raw_postcode)
-    @message = servable_message(postcode)
-    render :check
-  rescue StandardError => e
-    @message = e.message
+    @message = if postcode.valid?
+                 servable_message(postcode)
+               else
+                 postcode.validation_message
+               end
     render :check
   end
 

@@ -2,19 +2,31 @@
 
 # Holds postcodes in standard form
 class Postcode
-  attr_reader :normalized
+  attr_reader :normalized, :validation_message
 
   def initialize(raw_postcode)
+    @valid = false
+    @validation_message = nil
     @normalized = normalize(raw_postcode)
+  end
+
+  def valid?
+    @valid
   end
 
   private
 
   def normalize(raw_postcode)
-    postcode = raw_postcode.tr(' ', '').upcase
-    postcode.match(/\d+/) || raise(ArgumentError, invalid_message(raw_postcode))
-    # TODO: add more normalisation e.g. length, some alpha
-    postcode
+    begin
+      code = raw_postcode.tr(' ', '').upcase
+      code.match(/\d+/) || raise(ArgumentError, invalid_message(raw_postcode))
+      @valid = true
+      # TODO: add more normalisation e.g. length, some alpha
+    rescue ArgumentError => e
+      @valid = false
+      @validation_message = e.message
+    end
+    code
   end
 
   def invalid_message(raw_postcode)
