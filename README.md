@@ -1,16 +1,24 @@
-# Postcode Checker
+# README
 
-## Usage
-bundle install
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-bin/rails s
+Things you may want to cover:
 
-open this url:
+* Ruby version
 
-http://localhost:3000/postcodes/check
+* System dependencies
 
-and enter a postcode
+* Configuration
 
-## Tests
+* Database creation
 
-bin/spring rspec
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...

@@ -1,8 +1,0 @@
-production:
-  base_url: http://api.postcodes.io/postcodes
-
-development:
-  base_url: http://api.postcodes.io/postcodes
-
-test:
-  base_url: http://api.postcodes.io/postcodes
